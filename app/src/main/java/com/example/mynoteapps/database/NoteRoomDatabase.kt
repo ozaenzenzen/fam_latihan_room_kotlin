@@ -19,9 +19,9 @@ abstract class NoteRoomDatabase : RoomDatabase() {
                 synchronized(NoteRoomDatabase::class.java) {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
-                        NoteRoomDatabase::class.java,
-                        "note_database"
-                    ).build()
+                        NoteRoomDatabase::class.java, "note_database"
+                    )
+                        .build()
                 }
             }
             return INSTANCE as NoteRoomDatabase

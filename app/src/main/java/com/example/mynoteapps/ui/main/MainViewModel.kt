@@ -7,7 +7,9 @@ import com.example.mynoteapps.database.Note
 import com.example.mynoteapps.repository.NoteRepository
 
 class MainViewModel(application: Application) : ViewModel() {
+
     private val mNoteRepository: NoteRepository = NoteRepository(application)
 
     fun getAllNotes(): LiveData<List<Note>> = mNoteRepository.getAllNotes()
+
 }

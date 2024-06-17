@@ -26,17 +26,16 @@ class NoteAddUpdateActivity : AppCompatActivity() {
     private var isEdit = false
     private var note: Note? = null
 
-    private lateinit var noteAddUpdateViewModel: NoteAddUpdateViewModel
 
-    private var _activityNoteUpdateBinding: ActivityNoteAddUpdateBinding? = null
-    private val binding get() = _activityNoteUpdateBinding
+    private lateinit var noteAddUpdateViewModel: NoteAddUpdateViewModel
+    private var _activityNoteAddUpdateBinding: ActivityNoteAddUpdateBinding? = null
+    private val binding get() = _activityNoteAddUpdateBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        _activityNoteUpdateBinding = ActivityNoteAddUpdateBinding.inflate(layoutInflater)
+        _activityNoteAddUpdateBinding = ActivityNoteAddUpdateBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-
         noteAddUpdateViewModel = obtainViewModel(this@NoteAddUpdateActivity)
 
         note = intent.getParcelableExtra(EXTRA_NOTE)
@@ -45,10 +44,8 @@ class NoteAddUpdateActivity : AppCompatActivity() {
         } else {
             note = Note()
         }
-
         val actionBarTitle: String
         val btnTitle: String
-
         if (isEdit) {
             actionBarTitle = getString(R.string.change)
             btnTitle = getString(R.string.update)
@@ -62,7 +59,6 @@ class NoteAddUpdateActivity : AppCompatActivity() {
             actionBarTitle = getString(R.string.add)
             btnTitle = getString(R.string.save)
         }
-
         supportActionBar?.title = actionBarTitle
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -158,10 +154,10 @@ class NoteAddUpdateActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        _activityNoteUpdateBinding = null
+        _activityNoteAddUpdateBinding = null
     }
 
-    fun obtainViewModel(activity: AppCompatActivity): NoteAddUpdateViewModel {
+    private fun obtainViewModel(activity: AppCompatActivity): NoteAddUpdateViewModel {
         val factory = ViewModelFactory.getInstance(activity.application)
         return ViewModelProvider(activity, factory).get(NoteAddUpdateViewModel::class.java)
     }

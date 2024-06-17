@@ -7,7 +7,6 @@ import com.example.mynoteapps.repository.NoteRepository
 
 class NoteAddUpdateViewModel(application: Application) : ViewModel() {
     private val mNoteRepository: NoteRepository = NoteRepository(application)
-
     fun insert(note: Note) {
         mNoteRepository.insert(note)
     }
